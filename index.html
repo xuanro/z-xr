@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>请登录</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, #e0eafc, #cfdef3);
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+color: #333;
+}
+.container {
+background: #ffffff;
+padding: 40px;
+border-radius: 16px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+width: 360px;
+text-align: center;
+}
+h1 {
+font-size: 28px;
+margin-bottom: 20px;
+color: #2c3e50;
+}
+h2 {
+font-size: 24px;
+margin-bottom: 20px;
+color: #34495e;
+}
+input {
+width: 100%;
+padding: 14px;
+margin: 12px 0;
+border: 1px solid #ddd;
+border-radius: 8px;
+box-sizing: border-box;
+font-size: 16px;
+transition: border-color 0.3s;
+}
+input:focus {
+border-color: #3498db;
+outline: none;
+}
+button {
+width: 100%;
+padding: 14px;
+background-color: #3498db;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 16px;
+margin: 12px 0;
+transition: background-color 0.3s, box-shadow 0.3s;
+}
+button:hover {
+background-color: #2980b9;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+a {
+color: #3498db;
+text-decoration: none;
+font-size: 14px;
+transition: color 0.3s;
+}
+a:hover {
+color: #2980b9;
+text-decoration: underline;
+}
+.social-login {
+margin-top: 20px;
+}
+.social-login button {
+width: calc(50% - 5px);
+background-color: #f9f9f9;
+color: #555;
+border: 1px solid #ddd;
+margin: 5px;
+font-size: 14px;
+transition: background-color 0.3s;
+}
+.social-login button:hover {
+background-color: #e0e0e0;
+}
+.form-container {
+display: none;
+}
+.form-container.active {
+display: block;
+}
+.form-container form {
+margin: 0;
+}
+.form-container hr {
+margin: 20px 0;
+border: 0;
+border-top: 1px solid #ddd;
+}
+.form-container p {
+margin: 0;
+}
+.form-container .register-link {
+margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="login-form" class="form-container active">
+<h1>欢迎回来</h1>
+<form>
+<input type="text" placeholder="用户名/邮箱" required>
+<input type="password" placeholder="密码" required>
+<button type="submit">登录</button>
+<a href="#">忘记密码?</a>
+<hr>
+<div class="register-link">
+<!--- p>还没有账户？<a href="#" onclick="showRegisterForm()">注册</a></p--->
+<span class="carousel-caption"><a href="https://beian.miit.gov.cn/" target="_blank">滇ICP备19009222号-2</a></span>
+</div>
+</form>
+</div>
+<div id="register-form" class="form-container">
+<h2>创建新账户</h2>
+<form>
+<input type="text" placeholder="用户名" required>
+<input type="email" placeholder="邮箱" required>
+<input type="password" placeholder="密码" required>
+<input type="password" placeholder="确认密码" required>
+<button type="submit">注册</button>
+<div class="register-link">
+<p>已有账户？<a href="#" onclick="showLoginForm()">登录</a></p>
+</div>
+</form>
+</div>
+</div>
+<script>
+function showRegisterForm() {
+document.getElementById('login-form').classList.remove('active');
+document.getElementById('register-form').classList.add('active');
+}
+function showLoginForm() {
+document.getElementById('register-form').classList.remove('active');
+document.getElementById('login-form').classList.add('active');
+}
+</script>
+</body>
+</html>
