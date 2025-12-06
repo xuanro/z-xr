@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>必应每日图片</title>
+</head>
+<body>
+    <img id="bing-img" style="max-width:100%;">
+    
+    <script>
+        // 使用CORS代理
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const bingApi = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1';
+        
+        fetch(proxyUrl + bingApi)
+            .then(response => response.json())
+            .then(data => {
+                const imgUrl = 'https://bing.com' + data.images[0].url;
+                document.getElementById('bing-img').src = imgUrl;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
