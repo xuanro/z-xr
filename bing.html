@@ -2,24 +2,22 @@
 <html>
 <head>
     <title>必应每日图片</title>
+    <script>
+        function handleBingData(data) {
+            const image = data.images[0];
+            const imageUrl = 'https://bing.com' + image.url;
+            
+            // 直接跳转到图片
+            window.location.href = imageUrl;
+        }
+        
+        // 动态创建script标签进行JSONP请求
+        const script = document.createElement('script');
+        script.src = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&callback=handleBingData';
+        document.head.appendChild(script);
+    </script>
 </head>
 <body>
-    <img id="bing-img" style="max-width:100%;">
-    
-    <script>
-        // 使用CORS代理
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        const bingApi = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1';
-        
-        fetch(proxyUrl + bingApi)
-            .then(response => response.json())
-            .then(data => {
-                const imgUrl = 'https://bing.com' + data.images[0].url;
-                document.getElementById('bing-img').src = imgUrl;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    </script>
+    <p>正在跳转到必应每日图片...</p>
 </body>
 </html>
