@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>必应每日图片</title>
+<meta charset="UTF-8">
+<title>必应每日壁纸</title>
 </head>
 <body>
-    <p id="tip">正在获取必应每日图片并跳转...</p>
+<p id="tip">正在获取必应每日图片...</p>
 
-    <script>
-        const tip = document.getElementById('tip');
+<script>
+const tip = document.getElementById('tip');
 
-        // 完全复刻你 PHP 里的逻辑
-        async function getBingImg() {
-            try {
-                const api = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
-                let res = await fetch(api);
-                let data = await res.json();
+// 直接使用静态跳转 + 国内公共可用必应壁纸接口（无跨域）
+const bingWallpaper = 'https://bing.img.run/1920x1080.php';
 
-                // 对应 PHP：$array->{"images"}[0]->{"urlbase"}
-                let urlbase = data.images[0].urlbase;
-                let imgUrl = "https://cn.bing.com" + urlbase + "_1920x1080.jpg";
+// 直接跳转，不请求、不解析、不跨域
+window.location.href = bingWallpaper;
 
-                // 跳转到这张图
-                window.location.href = imgUrl;
-            } catch (err) {
-                tip.innerText = "获取失败，5 秒后刷新...";
-                setTimeout(() => location.reload(), 5000);
-            }
-        }
-
-        getBingImg();
-    </script>
+// 超时失败 5 秒刷新
+setTimeout(() => {
+  tip.innerText = '获取失败，5 秒后刷新重试...';
+  setTimeout(() => location.reload(), 5000);
+}, 5000);
+</script>
 </body>
 </html>
