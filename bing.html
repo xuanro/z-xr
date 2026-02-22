@@ -6,7 +6,7 @@
 <body>
     <script>
         // 使用fetch获取图片地址并重定向
-        fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'))
+        fetch('https://corsproxy.io/?url=' + encodeURIComponent('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'))
             .then(response => response.json())
             .then(data => {
                 const jsonData = JSON.parse(data.contents);
@@ -16,7 +16,7 @@
             .catch(error => {
                 console.error('Error:', error);
                 // 失败时使用备用地址
-                window.location.href = 'https://www.bing.com/th?id=OHR.ApisMellifera_ZH-CN0011466882_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp';
+                window.location.href = 'https://cn.bing.com/th?id=OHR.ApisMellifera_ZH-CN0011466882_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp';
             });
     </script>
     <p>正在获取必应每日图片并跳转...</p>
