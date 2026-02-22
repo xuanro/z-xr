@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>必应每日图片</title>
 </head>
 <body>
     <p id="tip">正在获取必应每日图片并跳转...</p>
 
     <script>
-        const api = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
-        const proxy = "https://api.allorigins.win/get?url=";
+        // 直接跳转你给的无代理接口
+        const url = "https://bing.img.run/1920x1080.php";
 
-        fetch(proxy + encodeURIComponent(api))
-            .then(res => res.json())
-            .then(data => {
-                // 代理返回的内容要 JSON.parse
-                const json = JSON.parse(data.contents);
-                const realUrl = "https://cn.bing.com" + json.images[0].url;
-                window.location.href = realUrl;
+        fetch(url)
+            .then(res => {
+                if (!res.ok) throw new Error("请求失败");
+                window.location.href = url;
             })
             .catch(err => {
-                document.getElementById("tip").innerText = "正在获取每日必应地址，5 秒后刷新...";
+                document.getElementById("tip").innerText = "获取失败，5 秒后刷新...";
                 setTimeout(() => location.reload(), 5000);
             });
     </script>
