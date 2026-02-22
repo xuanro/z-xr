@@ -11,7 +11,7 @@
 const tip = document.getElementById('tip');
 
 // 直接用必应官方支持跨域的接口（国内可用）
-fetch('https://bing.com HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
+fetch('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
   .then(res => res.json())
   .then(data => {
     const url = 'https://cn.bing.com' + data.images[0].url;
