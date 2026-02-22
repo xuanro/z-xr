@@ -8,7 +8,7 @@
 
     <script>
         function getBingImage() {
-            fetch('https://api.cors.lol/?url=' + encodeURIComponent('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'))
+            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'))
                 .then(response => response.json())
                 .then(data => {
                     const jsonData = JSON.parse(data.contents);
