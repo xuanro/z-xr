@@ -2,27 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>必应每日壁纸</title>
+    <title>Bing Wallpaper</title>
 </head>
 <body>
-    <p id="msg">正在获取今日必应壁纸...</p>
-
 <script>
-async function openBingWallpaper() {
-  const msg = document.getElementById('msg');
-  try {
-    // 直接用必应国内接口，不加任何代理
-    const res = await fetch('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
-    const data = await res.json();
-    const img = 'https://cn.bing.com' + data.images[0].url;
-    location.href = img;
-  } catch (e) {
-    msg.innerText = '获取失败，5 秒后刷新重试…';
-    setTimeout(() => location.reload(), 5000);
-  }
-}
-
-openBingWallpaper();
+// 必应官方动态壁纸跳转（专门给自动化工具用）
+window.location.href = "https://cn.bing.com/hpwp/";
 </script>
 </body>
 </html>
