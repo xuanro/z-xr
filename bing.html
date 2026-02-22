@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Bing Wallpaper</title>
+<meta charset="UTF-8">
+<title>必应每日壁纸</title>
 </head>
 <body>
+<p id="tip">正在获取必应每日图片…</p>
+
 <script>
-// 必应官方动态壁纸跳转（专门给自动化工具用）
-window.location.href = "https://cn.bing.com/hpwp/";
+const tip = document.getElementById('tip');
+
+// 直接用必应官方支持跨域的接口（国内可用）
+fetch('https://bing.com HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
+  .then(res => res.json())
+  .then(data => {
+    const url = 'https://cn.bing.com' + data.images[0].url;
+    location.href = url;
+  })
+  .catch(e => {
+    tip.innerText = '获取失败，5秒后刷新';
+    setTimeout(() => location.reload(), 5000);
+  });
 </script>
 </body>
 </html>
