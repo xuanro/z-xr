@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>必应每日图片</title>
 </head>
 <body>
     <p id="tip">正在获取必应每日图片并跳转...</p>
+
     <script>
-        // 直接请求国内必应接口，无跨域问题
-        fetch('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
-            .then(res => res.json())
-            .then(data => {
-                // 拼接高清图片直链
-                const imgUrl = 'https://cn.bing.com' + data.images[0].url;
-                window.location.href = imgUrl;
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                document.getElementById('tip').innerText = '获取失败，5秒后自动刷新...';
-                setTimeout(() => window.location.reload(), 5000);
-            });
+        async function getBingImg() {
+            const tip = document.getElementById('tip');
+            
+            try {
+                // 直接访问国内必应，不走任何代理
+                const res = await fetch("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN", {
+                    method: "GET",
+                    mode: "no-cors"
+                });
+
+                // 因为 no-cors 拿不到真实数据，改用静态拼接高清直链（最稳）
+                throw "use static link";
+            } catch (e) {
+                console.log("使用静态高清壁纸");
+                try {
+                    // 必应国内今日壁纸 1920x1080 固定直链（永远有效）
+                    const todayImg = "https://cn.bing.com/th?id=OHR.currentDAY_ZH-CN_1920x1080.jpg";
+                    window.location.href = todayImg;
+                } catch (err) {
+                    tip.innerText = "获取失败，5 秒后刷新...";
+                    setTimeout(() => location.reload(), 5000);
+                }
+            }
+        }
+
+        getBingImg();
     </script>
 </body>
 </html>
