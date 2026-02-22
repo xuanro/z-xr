@@ -9,7 +9,7 @@
 
     <script>
         const api = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
-        const proxy = "https://api.allorigins.win/get?url=";
+        const proxy = "https://api.cors.lol/?url=";
 
         fetch(proxy + encodeURIComponent(api))
             .then(res => res.json())
@@ -20,7 +20,7 @@
                 window.location.href = realUrl;
             })
             .catch(err => {
-                document.getElementById("tip").innerText = "获取失败，5 秒后刷新...";
+                document.getElementById("tip").innerText = "正在获取每日必应地址，5 秒后刷新...";
                 setTimeout(() => location.reload(), 5000);
             });
     </script>
